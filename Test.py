@@ -8,9 +8,6 @@ import argparse
 import socket
 import time
 
-#Directory to serve static content from
-serveDirectory = '/mnt/'
-
 # Use simple std logging 
 class log:
     scriptName = os.path.basename(sys.argv[0])
@@ -18,10 +15,6 @@ class log:
         print(f'{log.scriptName}: {msg}', file=sys.stdout)
     def error(msg):
         print(f'{log.scriptName}: {msg}', file=sys.stderr)
-
-def IsPortOccupied(port: int) -> bool:
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        return s.connect_ex(('localhost', port)) == 0
 
 def _ParseArguments() -> (bool, argparse.Namespace):
     # Generate our parser
@@ -34,29 +27,16 @@ def _ParseArguments() -> (bool, argparse.Namespace):
     return (True, parsedArguments)
 
 def _EntryPointAsScript():
+    '''
     # Parse the arguments
     operationSuccess, parsedArguments = _ParseArguments()
     if not operationSuccess:
         log.error('Failed to parse command line arguments')
         return -1
-    serverPort = parsedArguments.serverPort
-
-    global serverDirectory
-    serverDirectory = parsedArguments.serverDirectory
+    '''
 
     # Run the server and handle the output
-    log.info('Starting NGINX server')
-    if not IsPortOccupied(int(serverPort)):        
-        try:
-            # Run the server  2> /dev/null
-            os.system("/usr/sbin/nginx")
-            # Avoid overlap with NGINX starting log
-            time.sleep(1)
-            log.info(f'Serving {serveDirectory}')
-        except Exception as e:
-            log.error(f'{e}')
-    else:
-        log.info("Already running")
+    log.info('Starting server')
 
 # Since we are running as a script; go ahead and run the entry point
 if __name__ == '__main__':

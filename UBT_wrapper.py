@@ -37,7 +37,7 @@ def _EntryPointAsScript():
     # Run the command for UBT
     log.info('Starting server')
     finalCommand = '"C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Build\\BatchFiles\\RunUAT.bat" BuildCookRun ^\
-    -project="C:\\Users\\M2ME\\Documents\\Unreal Projects\\UEBuild\\UEBuild.uproject" ^\
+    -project="C:\\Users\\EVO\\Documents\\Unreal Projects\\MBuild\\MBuild.uproject" ^\
     -platform=Android -targetplatform=Android -clientconfig=Development -cookflavor=ASTC ^\
     -verbose -compressed -utf8output -prereqs -nop4 -build -cook -stage -pak -package -archive ^\
     -UbtArgs=""'
@@ -51,4 +51,4 @@ if __name__ == '__main__':
     exitCode = _EntryPointAsScript()
     
 # Example usage
-# python3 NGINXserver.py --port 443 --dir /mnt/ 
+# python3 UBT_wrapper.py 

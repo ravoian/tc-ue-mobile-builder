@@ -36,6 +36,7 @@ def _EntryPointAsScript():
 
     # Run the command for UBT
     log.info('Starting server')
+    os.system('setx JAVA_HOME "C:\Program Files\Android\Android Studio\jbr"')
     finalCommand = '"C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Build\\BatchFiles\\RunUAT.bat" BuildCookRun ^\
     -project="C:\\Users\\EVO\\Documents\\Unreal Projects\\MBuild\\MBuild.uproject" ^\
     -platform=Android -targetplatform=Android -clientconfig=Development -cookflavor=ASTC ^\
